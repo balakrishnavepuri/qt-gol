@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('scm') {
             steps {
-                git branch: 'master', url:'https://github.com/balakrishnavepuri/qt-gol.git'        
+                git branch: 'developer', url:'https://github.com/balakrishnavepuri/qt-gol.git'        
             }
         }
         stage('build') {
