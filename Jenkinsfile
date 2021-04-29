@@ -6,12 +6,12 @@ pipeline {
     stages {
         stage('scm') {
             steps {
-                git branch: 'developer', url:'https://github.com/KhajasCICDSamples/qt-gol.git'        
+                git branch: 'master', url:'https://github.com/balakrishnavepuri/qt-gol.git'        
             }
         }
         stage('build') {
             steps {
-                withSonarQubeEnv('SONAR-7.1') {
+                withSonarQubeEnv('sonar-6.7.4') {
                     sh script: 'mvn clean package sonar:sonar'
 
                 }
@@ -33,11 +33,5 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            mail to: 'learningthoughts.in@gmail.com', 
-                subject: "Status of pipeline ${currentBuild.fullDisplayName}",
-                body: "${env.BUILD_URL} has result ${currentBuild.result}"
-        }
-    }
+    
 }
